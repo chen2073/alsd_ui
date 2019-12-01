@@ -60,6 +60,12 @@ export default function RecordTable({users}) {
         return 'Unknown';
     };
 
+    // name is the userid
+    const handleDelete = (doorid, name) => {
+        fetch(socket + 'handle_delete_record?door_id='+doorid+'&name='+name)
+            .then(res => console.log(res))
+    };
+
     return (
         <div>
             <UpdateButton fetchData={fetchData} setFetchData={setFetchData}/>
