@@ -111,30 +111,35 @@ export default function ButtonsBar() {
                         variant="contained"
                         color="secondary"
                         className={classes.button}
-                        // startIcon={<SelectDoors/>}
                     >
                         Delete All USERS
                     </Button>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        className={classes.button}
-                        startIcon={<div>
-                            {/*<SelectDoors/>*/}
-                            <SelectUsers/>
-                            </div>}
-                    >
-                        Delete A USER
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        className={classes.button}
-                        startIcon={<AddIcon />}
-                    >
-                        New Door
-                    </Button>
+                    {/*<SelectUsers/>*/}
+                    {/*<Button*/}
+                    {/*    variant="contained"*/}
+                    {/*    color="secondary"*/}
+                    {/*    className={classes.button}*/}
+                    {/*>*/}
+                    {/*    Delete A USER*/}
+                    {/*</Button>*/}
+                    {/*<Button*/}
+                    {/*    variant="contained"*/}
+                    {/*    color="secondary"*/}
+                    {/*    className={classes.button}*/}
+                    {/*    startIcon={<AddIcon />}*/}
+                    {/*>*/}
+                    {/*    New Door*/}
+                    {/*</Button>*/}
                     <ClearDoorFP/>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        className={classes.button}
+                        startIcon={<DeleteIcon />}
+                        onClick={() => {fetch(socket+'delete_all_doors').then(res => {console.log(res)})}}
+                    >
+                        Delete Door IP
+                    </Button>
                 </Toolbar>
             </AppBar>
         </div>

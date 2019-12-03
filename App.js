@@ -7,6 +7,8 @@ import AddBar from "./AddBar";
 import SignIn from "./login";
 import UserTable from "./UserTable";
 import DoorIP from "./DoorIP";
+import {UserProvider} from "./UserContext";
+
 
 function App() {
     // const [pass, setPass] = React.useState(false);
@@ -19,13 +21,15 @@ function App() {
         const [updateUser, setUpdateUser] = React.useState({state:0});
 
         return (
-            <div className="App">
-                <ButtonsBar/>
-                <AddBar setUpdateUser={setUpdateUser}/>
-                <RecordTable users={users}/>
-                <UserTable setUsers={setUsers} updateUser={updateUser}/>
-                <DoorIP/>
-            </div>
+            // <UserProvider>
+                    <div className="App">
+                        <ButtonsBar/>
+                        <AddBar setUpdateUser={setUpdateUser}/>
+                        <RecordTable users={users}/>
+                        <UserTable setUsers={setUsers} updateUser={updateUser}/>
+                        <DoorIP/>
+                    </div>
+            // </UserProvider>
         );
     // }
 

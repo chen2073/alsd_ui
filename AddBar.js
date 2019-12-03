@@ -135,6 +135,39 @@ function NewUserProcess() {
     );
 }
 
+function ClearUser() {
+    const classes = useStyles();
+    const [state, setState] = React.useState({door:'', name:''});
+
+    const submitAction = () => {
+        console.log(state.door, state.name);
+
+        fetch(socket + 'clear_user_from_scanner?door_id='+state.door+'&name='+state.name)
+            .then(response => console.log(response));
+
+
+        setState({door:'', name:''});
+    };
+
+
+    return (
+        <div className={classes.container}>
+            <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="component-simple">DoorID</InputLabel>
+                <Input value={state.door} onChange={event => {setState({...state, door:event.target.value})}} />
+                <FormHelperText>Enter a Door ID</FormHelperText>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="component-simple">Name</InputLabel>
+                <Input value={state.name} onChange={event => {setState({...state, name:event.target.value})}} />
+                <FormHelperText>Enter a Name</FormHelperText>
+            </FormControl>
+            <Button variant="contained" className={classes.button} onClick={submitAction}>
+                Clear User from Door
+            </Button>
+        </div>
+    );
+}
 
 export default function AddBar({setUpdateUser}) {
     const classes = useStyles();
@@ -146,6 +179,7 @@ export default function AddBar({setUpdateUser}) {
                     <AddDoorIP/>
                     <AddUserName setUpdateUser={setUpdateUser}/>
                     <NewUserProcess/>
+                    <ClearUser/>
                 </Toolbar>
             </AppBar>
         </div>

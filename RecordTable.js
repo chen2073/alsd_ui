@@ -64,6 +64,8 @@ export default function RecordTable({users}) {
     const handleDelete = (doorid, name) => {
         fetch(socket + 'handle_delete_record?door_id='+doorid+'&name='+name)
             .then(res => console.log(res))
+        // update record table
+        setFetchData(fetchData+1);
     };
 
     return (
@@ -87,13 +89,13 @@ export default function RecordTable({users}) {
                         {records && records.map(record => (
                             <TableRow key={record.Time}>
                                 <TableCell component="th" scope="row" padding="checkbox">
-                                    <Button
+                                    {/* <Button
                                         // variant="contained"
                                         color="primary"
                                         className={classes.button}
                                         startIcon={<HighlightOffSharpIcon/>}
                                         onClick={() => console.log('clicked')}
-                                    />
+                                    /> */}
                                     {retrieveName(record['UserID'], record['DoorID'])}
                                 </TableCell>
                                 <TableCell align="center">{record.DoorID}</TableCell>
@@ -108,7 +110,9 @@ export default function RecordTable({users}) {
                                         <ModalImage
                                             small={socket+'get_image?image_id='+record.ImageID}
                                             large={socket+'get_image?image_id='+record.ImageID}
-                                            alt={record.ImageID}/>
+                                            alt={record.ImageID}
+                                            showRotate={true}
+                                        />
                                     </div>
                                 </TableCell>
                             </TableRow>

@@ -7,12 +7,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {socket} from "./socket";
-import {red} from "@material-ui/core/colors";
+import Button from "@material-ui/core/Button";
 
 
 const useStyles = makeStyles({
     root: {
         width: '50%',
+        float: 'right',
         overflowX: 'auto',
     },
     table: {
@@ -24,6 +25,7 @@ export default function DoorIP({setUsers, updateUser}) {
     const classes = useStyles();
 
     const [table, setTable] = React.useState(null);
+    const [refresh, setRefresh] = React.useState(0);
 
     React.useEffect(() => {
         fetch(socket+'get_all_doors')
@@ -33,12 +35,12 @@ export default function DoorIP({setUsers, updateUser}) {
             })
             .catch(e => console.log(e))
 
-    }, [updateUser]);
+    }, [updateUser, refresh]);
 
 
     return (
-        <div>
             <Paper className={classes.root}>
+                <Button variant="contained" className={classes.button} onClick={() => setRefresh(refresh+1)}>Update</Button>
                 <Table className={classes.table} aria-label="username table">
                     <TableHead>
                         <TableRow>
@@ -56,5 +58,5 @@ export default function DoorIP({setUsers, updateUser}) {
                     </TableBody>
                 </Table>
             </Paper>
-        </div>)
+    )
 }
